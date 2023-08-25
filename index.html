@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html>
+<body>
+    <center>
+    <!-- Fuck you I don't care if center is deprecated I love it-->
+
+<h1>FucCoin</h1>
+
+<h1>The world's shittiest centralized scoreboard i mean cryptocurrency using the BrainFuck Protocol as proof of work</h1>
+
+<h1>CURRENT BLOK</h1>
+<p id="blok"></p>
+
+<label for="name">Name:</label>
+<input type="text" id="name"><br><br>
+
+<label for="1337">BrainFuck:</label>
+<input type="text" id="bf"><br><br>
+
+
+<button onclick="sendItBitch()">Submit </button> 
+
+<h1> WALLETZ</h1>
+<p id="walletz"></p>
+
+<script>
+    fetch('wallet.json')
+    .then(response => response.json())
+    .then(data =>  document.getElementById("walletz").innerHTML =  data.map(i => i[0] + ":" + i[1] + " FucCoins <br/>").join(""));
+
+    fetch('block.json')
+    .then(response => response.json())
+    .then(data =>  document.getElementById("blok").innerHTML =  data.map(i => "[" + i[0] + "]" + " => [" + i[1] + "] <br/>").join(""));
+
+    function sendItBitch()
+    {
+        const params = new URLSearchParams({
+            name: document.getElementById('name').value,
+            bf: document.getElementById('bf').value,
+        });
+        const requestOptions2 = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'Fetch PUT Request Example' })}
+        fetch('https://b9sen6qy83.execute-api.us-east-1.amazonaws.com/fuc/sendit?' + params, requestOptions2)
+    };
+</script>
+
+<p>
+if you figure out how to rebuild this in https://esolangs.org/wiki/Tarski i will lvoe you forever
+<br/>
+line goes up, baby
+</p>
+</center>
+</body>
+</html> 
