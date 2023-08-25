@@ -50,14 +50,15 @@ def buildbracemap(code):
 
 def makechallenge():
   chall = []
-  for i in range(random.randint(2,3)):
-    c = [[random.randint(0,8)],[random.randint(0,8)]]
+  for i in range(2):
+    c = [[random.randint(0,4)],[random.randint(0,4)]]
     if(random.randint(0,1) == 0):
-      c[0].append(random.randint(0,8))
-    else:
-      c[1].append(random.randint(0,8))
-
+      c[0].append(random.randint(0,4))
     chall.append(c)
+  # same inputs or same outputs, reroll
+  if(chall[0][0][0] == chall[1][0][0] or chall[0][1][0] == chall[1][1][0]):
+    makechallenge()
+    return
     
   json_object = json.dumps(chall)
   with open("/tmp/c.json", "w") as outfile:
